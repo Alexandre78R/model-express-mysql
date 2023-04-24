@@ -1,7 +1,9 @@
+require('dotenv').config();
 var express = require('express');
 var app = express();
 const http = require('http').createServer(app);
-const PORT = "3000";
+const PORT =  process.env.SERVER_PORT;
+console.log(`I am ${process.env.MY_NAME}, wilder in ${process.env.MY_CITY}, and I love ${process.env.MY_LANGUAGE}`);
 
 app.get('/', function(req, res) {
   res.send('hello world');
