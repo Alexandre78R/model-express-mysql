@@ -5,6 +5,8 @@ const http = require('http').createServer(app);
 const PORT = process.env.SERVER_PORT;
 const database = require("./database.js");
 const movieHandlers = require("./movieHandlers");
+const usersHandlers = require("./usersHandlers.js");
+
 database
   .getConnection()
   .then(() => {
@@ -20,6 +22,9 @@ app.get('/', function(req, res) {
 
 app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
+
+app.get("/api/users", usersHandlers.getUsers);
+app.get("/api/users/:id", usersHandlers.getUsersById);
 
 http.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
