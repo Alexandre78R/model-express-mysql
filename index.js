@@ -7,6 +7,9 @@ const database = require("./database.js");
 const movieHandlers = require("./movieHandlers");
 const usersHandlers = require("./usersHandlers.js");
 
+
+app.use(express.json()); 
+
 database
   .getConnection()
   .then(() => {
@@ -21,9 +24,11 @@ app.get('/', function(req, res) {
 });
 
 app.get("/api/movies", movieHandlers.getMovies);
+app.post("/api/movies", movieHandlers.postMovie);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
 
 app.get("/api/users", usersHandlers.getUsers);
+app.post("/api/users", usersHandlers.postUser);
 app.get("/api/users/:id", usersHandlers.getUsersById);
 
 http.listen(PORT, () => {

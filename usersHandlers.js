@@ -28,8 +28,27 @@ const database = require("./database.js");
       res.status(500).send("Error retrieving data from database");
     });
   };
+
+  const postUser = (req, res) => {
+    console.log("req", req.body);
+    // res.json("test")
+    const { firstname, lastname, email, city, language } = req.body;
+    database
+      .query(
+        "INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
+        [firstname, lastname, email, city, language]
+      )
+      .then(([result]) => {
+        res.json("created");
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error saving the users");
+      });
+  };
   
   module.exports = {
     getUsers,
     getUsersById,
+    postUser,
   };
