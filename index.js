@@ -27,11 +27,13 @@ app.get("/api/movies", movieHandlers.getMovies);
 app.post("/api/movies", validateMovie, movieHandlers.postMovie);
 app.put("/api/movies/:id", validateMovie, movieHandlers.updateMovie);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
+app.delete("/api/movies/:id", movieHandlers.deleteMovie);
 
 app.get("/api/users", usersHandlers.getUsers);
 app.post("/api/users", validateUser, usersHandlers.postUser);
 app.put("/api/users/:id", validateUser, usersHandlers.updateUser);
 app.get("/api/users/:id", usersHandlers.getUsersById);
+app.delete("/api/users/:id", usersHandlers.deleteUsers);
 
 http.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
